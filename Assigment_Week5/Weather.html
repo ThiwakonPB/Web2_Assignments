@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>
+Weather Report Assignmnet week 5 
+</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Search weather by city name</h1>
+<div>
+    <form id ="city-form">
+        <div><input type="text" id="city-name"></div>
+        <div><input type="submit"></div>
+    </form>
+</div>
+<h1>Display with buttons</h1>
+<button type="button" onclick="getWeather(Bangkok)">Bangkok</button>
+<button type="button" onclick="getWeather(London)">London</button>
+
+<p>Weather:</p>
+<div id=display>
+</div>
+<p>Temp:</p>
+<div id = "temp">
+</div>
+
+
+<script>
+$("#city-form").submit(function(event){
+    event.preventDefault();
+
+    var cityName = $("#city-name").val();
+    getWeather(cityName);
+
+});
+var Bangkok = "Bangkok";
+var London = "London"
+function getWeather(city) {
+    $.get("https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=138594935892ba5ad2ff082829159f45",function(data){
+    console.log(data);
+    $("#display").html(data.weather[0].description);
+    $("#temp").html(data.main.temp);
+});
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+
+
+
+
+ 
